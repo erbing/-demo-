@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>单例模式</title>
+</head>
+<body>
+	
+
+<script>
+	var SingleDog = function(name){				//创建构造函数
+		this.name = name;
+		this.instance = null;
+	}
+
+	SingleDog.prototype.getName = function(){	//SingleDog对象获取当前name方法
+		return this.name;
+	}
+
+	SingleDog.getInstance = function(name){		//获取实例化方法
+		if(!this.instance){
+			this.instance = new SingleDog(name); 
+		}
+		return this.instance;
+	}
+ 
+	var a = SingleDog.getInstance('Zigzag');	//实例化 并将结果对象 赋值给a
+	var b = SingleDog.getInstance('Bing');		//实例化 并将结果对象 赋值给b			
+	
+	console.log(a.getName());	//这个大家一看很明显就知道了（Zigzag）
+	console.log(b.getName());	//这个 呢？
+
+	console.log(a === b); 		// true
+</script>
+
+
+
+</body>
+</html>

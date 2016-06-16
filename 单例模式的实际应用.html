@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>单例模式在实际的开发过程中的应用</title>
+</head>
+<body>
+
+<button id="login">登陆</button>
+	
+<script>
+	
+	// var loginlayer = (function(){
+	// 	var div = document.createElement('div');
+	// 	div.innerHTML = "我的登陆浮层";
+	// 	div.style.display = 'none';
+	// 	document.body.appendChild(div);
+	// 	return div;
+	// })();
+
+	// document.getElementById('login').onclick = function(){
+	// 	loginlayer.style.display = 'block';
+	// }
+	
+	// var loginlayer = function(){
+	// 	var div = document.createElement('div');
+	// 	div.innerHTML = "我的登陆浮层";
+	// 	div.style.display = 'none';
+	// 	document.body.appendChild(div);
+	// 	return div;
+	// };	
+	
+	// document.getElementById('login').onclick = function(){
+	// 	var loginlayers = loginlayer();
+	// 	loginlayer.style.display = 'block';
+	// }
+
+	var Createloginlayer = function(){
+		var div;
+		return function(){
+			if(!div){
+				var div = document.createElement('div');
+				div.innerHTML = "我的登陆浮层";
+				div.style.display = 'none';
+				document.body.appendChild(div);
+			}
+			return div;
+		}
+	};	
+	
+	document.getElementById('login').onclick = function(){
+		var loginlayers = Createloginlayer();
+		loginlayer.style.display = 'block';
+	}
+</script>
+
+
+</body>
+</html>
