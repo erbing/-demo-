@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>策略模式DEMO --- 实现年终奖的结算</title>
+</head>
+<body>
+	
+	<script>
+		/*
+		* salary: 基本薪资
+		* perLevel: 绩效考核等级
+		*/
+
+// var calculateBonus = function(salary,perLevel){
+// 	if( perLevel === 'S'){
+// 		return salary * 4 ; 
+// 	}
+
+// 	if(perLevel === 'A'){
+// 		return salary * 3 ;
+// 	}
+
+// 	if(perLevel === 'B'){
+// 		return salary * 2;
+// 	}
+// }
+
+// var result = calculateBonus(10000,'S');
+
+// console.log(result); // 40000 ;
+
+var methods = {
+	S: function(salary){
+		return salary * 4 ;
+	} ,
+
+	A: function(salary){
+		return salary * 3 ;
+	},
+	
+	B: function(salary){
+		return salary * 2 ;
+	},
+
+	C: function(salary){
+		return salary * 1 ;
+	}  
+}
+
+var calculateBonus = function( perLevel ,salary){
+	return methods[perLevel](salary);
+}
+
+var xiao = calculateBonus('S',10000);
+console.log(xiao);  //40000
+	</script>
+
+</body>
+</html>
