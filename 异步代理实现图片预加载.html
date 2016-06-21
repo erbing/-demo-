@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>虚拟代理，实现图片预加载</title>
+</head>
+<body>
+	
+	<script type="text/javascript">
+		var myImage = (function(){
+			var imgNode = document.createElement('img');
+			document.body.appendChild(imgNode);
+
+			return {
+				setSrc: function(src){
+					imgNode.src = src;
+				}
+			}
+		})();
+	
+		var proxyImage = (function(){
+			var img = new Image;
+			img.onload = function(){
+				myImage.setSrc(this.src);
+			}
+
+			return {
+				setSrc: function(src){
+					myImage.setSrc("img/donated.jpg");
+					img.src = src; 
+				}
+			}
+		})();
+		
+		
+		proxyImage.setSrc("http://g.hiphotos.baidu.com/zhidao/pic/item/63d9f2d3572c11dfff955ae3612762d0f603c2ae.jpg");
+	
+	</script>
+
+</body>
+</html>
