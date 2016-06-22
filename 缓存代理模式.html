@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>缓存代理模式 - 实现乘积</title>
+</head>
+<body>
+	
+	<script type="text/javascript">
+		var mult = function(){
+			var a = 1;
+			for (var i = 0; i < arguments.length; i++) {
+				a = a*arguments[i]
+			};
+
+			return a;
+		}	
+	
+		// var result = mult(1,2,3,4);
+		// console.log(result);
+
+		var proxyMult =(function(){
+			var cache = {};
+			return function(){
+				var args = Array.prototype.join.call(arguments,',');
+				if(args in cache){
+					return cache[args];
+				}
+
+				return cache[args] = mult.apply(this,arguments);
+			}
+		})();
+
+		var result = proxyMult(1,2,3,4);
+		var result1 = proxyMult(1,2,3,4);
+		console.log(result,result1);
+	</script>
+	
+</body>
+</html>
